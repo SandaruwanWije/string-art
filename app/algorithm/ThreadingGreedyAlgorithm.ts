@@ -66,8 +66,7 @@ export class ThreadingGreedyAlgorithm {
                     nailsCordinates: []
                 }
                 console.log("Started post message to lineCalculateWorker")
-                setCount(1001)
-                // lineCalculateWorker.postMessage(calculateLinMsgToWorker);
+                lineCalculateWorker.postMessage(calculateLinMsgToWorker);
 
                 lineCalculateWorker.onmessage = function (e) {
                     console.log("Recieved lineCalculateWorker posted message", e)
