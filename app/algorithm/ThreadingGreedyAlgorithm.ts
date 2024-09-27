@@ -86,9 +86,9 @@ export class ThreadingGreedyAlgorithm {
                         console.log("Recieved lineSolverWorker posted message", e)
                         const lineSolverMsgFromWorker: LineSolverMsgFromWorker = e.data
 
-                        if (ctx) {
-                            showImage(ctx, lineSolverMsgFromWorker.imageData)
-                        }
+                        // if (ctx) {
+                        //     showImage(ctx, lineSolverMsgFromWorker.imageData)
+                        // }
                         // setNailSequence(lineSolverMsgFromWorker.nailSeq)
                         // cleanup(ctx, canvas)
                         console.log(e)

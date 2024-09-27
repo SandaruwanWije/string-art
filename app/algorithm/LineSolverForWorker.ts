@@ -62,8 +62,6 @@ export class LineSolver {
                         image: target
                     });
                 }
-                // this.showImage(ctx, target);
-                // await this.sleep(100)
             }
             count++;
         }
