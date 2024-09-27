@@ -19,7 +19,7 @@ ctx.addEventListener("message", async (event) => {
     skip
   } = data;
     const lineSolver = new LineSolver();
-
+    const count = 5000;
     const nailSeq = await lineSolver.solveIterativelyWithLineScores(
       allLineCoordinates,
       imageData,
@@ -34,7 +34,8 @@ ctx.addEventListener("message", async (event) => {
         ctx.postMessage({
           message: "Worker done work!",
           nailSeq: [],
-          imageData: progress.image
+          imageData: progress.image,
+          count: progress.count
         });
       }
     );

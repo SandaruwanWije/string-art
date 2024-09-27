@@ -28,5 +28,7 @@ export type LineSolverMsgToWorker = {
 export type LineSolverMsgFromWorker = {
     message: string;
     nailSeq: number[];
-    imageData: ImageData
+    imageData: ImageData;
+    count: number;
+    type: string;
 };

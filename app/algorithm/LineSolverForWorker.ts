@@ -59,7 +59,8 @@ export class LineSolver {
             if (count % 10 === 0) {
                 if (onProgress) {
                     onProgress({
-                        image: target
+                        image: target,
+                        count: count
                     });
                 }
             }

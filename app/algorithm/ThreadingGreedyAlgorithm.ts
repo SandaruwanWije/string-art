@@ -87,13 +87,15 @@ export class ThreadingGreedyAlgorithm {
 
                         console.log("Started post message to lineSolverWorker")
                         setCount(1103)
-                        // lineSolverWorker.postMessage(lineSolverMsgToWorker);
+                        setCount(1104)
+                        lineSolverWorker.postMessage(lineSolverMsgToWorker);
                         lineSolverWorker.onmessage = function (e) {
+                            
                             console.log("Recieved lineSolverWorker posted message", e)
                             const lineSolverMsgFromWorker: LineSolverMsgFromWorker = e.data
-
+                            setCount(lineSolverMsgFromWorker.count)
                             if (ctx) {
-                                showImage(ctx, lineSolverMsgFromWorker.imageData)
+                                // showImage(ctx, lineSolverMsgFromWorker.imageData)
                             }
                             // setNailSequence(lineSolverMsgFromWorker.nailSeq)
                             // cleanup(ctx, canvas)
