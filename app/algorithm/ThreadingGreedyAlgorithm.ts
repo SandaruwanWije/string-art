@@ -16,7 +16,7 @@ export class ThreadingGreedyAlgorithm {
     public async startThreading(
         canvasId: string,
         image: HTMLImageElement | null,
-        setCount: unknown, setNailSequence: React.Dispatch<React.SetStateAction<number[]>>,
+        setCount: React.Dispatch<React.SetStateAction<number>>, setNailSequence: React.Dispatch<React.SetStateAction<number[]>>,
         setViewedImage: Dispatch<SetStateAction<ImageData | null>>,
         num_of_nails: number,
         max_line_count: number,
@@ -81,14 +81,15 @@ export class ThreadingGreedyAlgorithm {
                     lineSolverMsgToWorker.nailsCordinates = calculateLinMsgFromWorker.nailsCoordinates
 
                     console.log("Started post message to lineSolverWorker")
-                    lineSolverWorker.postMessage(lineSolverMsgToWorker);
+                    setCount(1000)
+                    // lineSolverWorker.postMessage(lineSolverMsgToWorker);
                     lineSolverWorker.onmessage = function (e) {
                         console.log("Recieved lineSolverWorker posted message", e)
                         const lineSolverMsgFromWorker: LineSolverMsgFromWorker = e.data
 
-                        // if (ctx) {
-                        //     showImage(ctx, lineSolverMsgFromWorker.imageData)
-                        // }
+                        if (ctx) {
+                            showImage(ctx, lineSolverMsgFromWorker.imageData)
+                        }
                         // setNailSequence(lineSolverMsgFromWorker.nailSeq)
                         // cleanup(ctx, canvas)
                         console.log(e)
