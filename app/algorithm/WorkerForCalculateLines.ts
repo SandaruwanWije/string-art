@@ -9,7 +9,8 @@ ctx.addEventListener("message", (event) => {
     message: "Worker done work!",
     nailsCoordinates: [],
     allLineCoordinates: [],
-    count: 1200
+    count: 1200,
+    type: "progress"
   });
   console.log("Recieved message to lineCalculateWorker")
   const data: CalculateLineMsgToWorker = event.data;
@@ -21,7 +22,8 @@ ctx.addEventListener("message", (event) => {
       message: "Worker done work!",
       nailsCoordinates: [],
       allLineCoordinates: [],
-      count: 1201
+      count: 1201,
+      type: "progress"
     });
     const lineConnections = new LineConnections();
     const allLineCoordinates = lineConnections.getAllPossibleLinesCoordinatesAgainstConnection(nailsCoordinates);
@@ -29,14 +31,16 @@ ctx.addEventListener("message", (event) => {
       message: "Worker done work!",
       nailsCoordinates: [],
       allLineCoordinates: [],
-      count: 1201
+      count: 1201,
+      type: "progress"
     });
     console.log("lineCalculateWorker Job done posting result to main thread")
     ctx.postMessage({
       message: "Worker done work!",
       nailsCoordinates,
       allLineCoordinates,
-      count: 1203
+      count: 1203,
+      type: "final"
     });
   } else {
     ctx.postMessage({ message: "Invalid data provided to worker" });
