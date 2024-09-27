@@ -73,32 +73,32 @@ export class ThreadingGreedyAlgorithm {
                     const calculateLinMsgFromWorker: CalculateLineMsgFromWorker = e.data
 
                     setCount(calculateLinMsgFromWorker.count)
-                    // console.log("Recieved lineCalculateWorker posted message", e)
-                    // const calculateLinMsgFromWorker: CalculateLineMsgFromWorker = e.data
-                    // if (ctx) {
-                    //     drawNails(calculateLinMsgFromWorker.nailsCoordinates, ctx);
-                    // }
+                    console.log("Recieved lineCalculateWorker posted message", e)
+                    setCount(1101)
+                    if (ctx) {
+                        drawNails(calculateLinMsgFromWorker.nailsCoordinates, ctx);
+                    }
+                    setCount(1102)
+                    const lineSolverWorker = new Worker(new URL("./WorkerForLineSolver.ts", import.meta.url));
 
-                    // const lineSolverWorker = new Worker(new URL("./WorkerForLineSolver.ts", import.meta.url));
+                    lineSolverMsgToWorker.allLineCoordinates = calculateLinMsgFromWorker.allLineCoordinates
+                    lineSolverMsgToWorker.nailsCordinates = calculateLinMsgFromWorker.nailsCoordinates
 
-                    // lineSolverMsgToWorker.allLineCoordinates = calculateLinMsgFromWorker.allLineCoordinates
-                    // lineSolverMsgToWorker.nailsCordinates = calculateLinMsgFromWorker.nailsCoordinates
+                    console.log("Started post message to lineSolverWorker")
+                    setCount(1103)
+                    // lineSolverWorker.postMessage(lineSolverMsgToWorker);
+                    lineSolverWorker.onmessage = function (e) {
+                        console.log("Recieved lineSolverWorker posted message", e)
+                        const lineSolverMsgFromWorker: LineSolverMsgFromWorker = e.data
 
-                    // console.log("Started post message to lineSolverWorker")
-                    // setCount(1000)
-                    // // lineSolverWorker.postMessage(lineSolverMsgToWorker);
-                    // lineSolverWorker.onmessage = function (e) {
-                    //     console.log("Recieved lineSolverWorker posted message", e)
-                    //     const lineSolverMsgFromWorker: LineSolverMsgFromWorker = e.data
-
-                    //     if (ctx) {
-                    //         showImage(ctx, lineSolverMsgFromWorker.imageData)
-                    //     }
-                    //     // setNailSequence(lineSolverMsgFromWorker.nailSeq)
-                    //     // cleanup(ctx, canvas)
-                    //     console.log(e)
-                    // };
-                    // console.log(e)
+                        if (ctx) {
+                            showImage(ctx, lineSolverMsgFromWorker.imageData)
+                        }
+                        // setNailSequence(lineSolverMsgFromWorker.nailSeq)
+                        // cleanup(ctx, canvas)
+                        console.log(e)
+                    };
+                    console.log(e)
                 };
             }
         }
