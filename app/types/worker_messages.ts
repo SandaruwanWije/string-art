@@ -9,6 +9,7 @@ export type CalculateLineMsgFromWorker = {
     message: string;
     nailsCoordinates: [number, number][];
     allLineCoordinates:  { [key: string]: Array<[number, number]>; };
+    count: number
 };
 
 export type LineSolverMsgToWorker = {
